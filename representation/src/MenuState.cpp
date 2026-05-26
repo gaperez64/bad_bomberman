@@ -1,5 +1,6 @@
 #include "representation/MenuState.h"
 
+#include <iostream>
 #include <string>
 #include "representation/GameState.h"
 #include "representation/StateManager.h"
@@ -76,6 +77,10 @@ void MenuState::handleEvent(const sf::Event& event) {
         event.mouseButton.button == sf::Mouse::Left) {
         float mx = static_cast<float>(event.mouseButton.x);
         float my = static_cast<float>(event.mouseButton.y);
+        auto b = m_playButtonBounds;
+        std::cout << "click=(" << mx << "," << my << ") button=["
+                  << b.left << "-" << b.left+b.width << ", "
+                  << b.top  << "-" << b.top+b.height << "]\n" << std::flush;
         if (m_playButtonBounds.contains(mx, my)) startGame();
     }
     if (event.type == sf::Event::KeyPressed &&
